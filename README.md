@@ -1,70 +1,50 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Ecommerce Custom Dashboard 
 
-## Available Scripts
+Ecommerce Admin Dashboard with all the features like product management, category-subcategory management, attributes, colors, sizes management, abondoned cart management, custom email templates, push notifications etc. It is similar to shopify and woocommerce dashboard but with custom requirements. 
 
-In the project directory, you can run:
+## Tech Stack
 
-### `npm start`
+**Client:** React.js, HTML, CSS, SCSS preprocessor, Aos animations, React Redux (middleware saga), Analytics, API integration, Acios API   
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Server:** Node, Node Mailer, Express, Mongo DB, Vercel 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Analytics
+- Node Mailer
+- Abondoned Cart Recovery
+- Firebase Push Notifications
+- Custom Email Templates
+- Products Managemnet
+- Categories Management
+- Attributes Management
+- Payment Gateways Management
+- Orders Management
+- Users Management
+- Media Management
+- SEO Management
+- Middlewares
+- Aos Animations
+- Node Mailer
+- Cross Browser compatible
+- React Redux Saga
+- Deployment On Vercel 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Screenshots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![App Screenshot](https://user-images.githubusercontent.com/97098423/178944527-3388c4aa-2321-4031-bd6d-40b4ed5d2b98.png)
 
-### `npm run eject`
+![App Screenshot](https://user-images.githubusercontent.com/97098423/178944525-eb60d955-bd1d-47f7-b7ae-3fc7f12cc8b3.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![App Screenshot](https://user-images.githubusercontent.com/97098423/178944494-dd5950f7-eba3-46c6-9814-a9f903066843.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![App Screenshot](https://user-images.githubusercontent.com/97098423/178944522-334d6813-a29b-4dc7-aa7a-37b6c154bfcf.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Authors
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [@DevNinja56](https://github.com/DevNinja56)
+- Made with ❤️ and JavaScrip
