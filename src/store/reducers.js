@@ -59,7 +59,7 @@ const rootReducer = combineReducers({
   Crm,
   Invoice,
   CategoriesReducerGet,
-  CategoriesReducerPost,
+  // CategoriesReducerPost,
 });
 
 export default rootReducer;

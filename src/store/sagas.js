@@ -50,6 +50,6 @@ export default function* rootSaga() {
     fork(crmSaga),
     fork(invoiceSaga),
     fork(categorieGetSaga),
-    fork(watchAddCategory),
+    // fork(watchAddCategory),
   ]);
 }

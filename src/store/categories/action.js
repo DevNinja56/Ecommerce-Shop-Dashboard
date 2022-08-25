@@ -5,7 +5,7 @@ export const categorieResponseGet = (actionType, data) => ({
   payload: { actionType, data },
 });
 
-export const categorieResponsePost = (actionType, data) => ({
-  type: CATEGORIE_POST_API,
-  payload: { actionType, data },
-});
+// export const categorieResponsePost = (actionType, data) => ({
+//   type: CATEGORIE_POST_API,
+//   payload: { actionType, data },
+// });

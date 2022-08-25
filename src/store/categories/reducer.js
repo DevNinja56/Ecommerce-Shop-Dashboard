@@ -11,13 +11,13 @@ const CategoriesReducerGet = (state = [], action) => {
 };
 
 // post api reducer
-const CategoriesReducerPost = (state = [], action) => {
-  switch (action.type) {
-    case categorieResponsePost:
-      return [...state, ...action.payload.data];
-    default:
-      return state;
-  }
-};
+// const CategoriesReducerPost = (state = [], action) => {
+//   switch (action.type) {
+//     case categorieResponsePost:
+//       return [...state, ...action.payload.data];
+//     default:
+//       return state;
+//   }
+// };
 
-export { CategoriesReducerGet, CategoriesReducerPost };
+export { CategoriesReducerGet };

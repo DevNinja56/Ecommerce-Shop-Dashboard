@@ -51,58 +51,21 @@ const AddCategories = () => {
   //   CategoriesReducerPost: state.CategoriesReducerPost,
   // }));
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // function submitData(finalFormData) {
+  //   console.log("Im putting final form data to be -->");
+  //   for (var [key, value] of finalFormData.entries()) {
+  //     console.log(key, value);
+  //   }
+  //   dispatch({
+  //     type: "CATEGORIE_POST_API",
+  //     payload: finalFormData,
+  //   });
 
-  function submitData(finalFormData) {
-    console.log("Im putting final form data to be -->");
-    for (var [key, value] of finalFormData.entries()) {
-      console.log(key, value);
-    }
-    return dispatch({
-      type: "CATEGORIE_POST_API",
-      payload: finalFormData,
-    });
-  }
-  // console.clear();
-
-  // const [selectedMulti, setselectedMulti] = useState(null);
-
-  // function handleMulti(selectedMulti) {
-  //   setselectedMulti(selectedMulti);
+  //   return 0;
   // }
 
-  //Dropzone file upload
-  // const [selectedFiles, setselectedFiles] = useState([]);
-  // const [file1, setFile1] = useState([]);
-  // const [file2, setFile2] = useState([]);
-  // const [file3, setFile3] = useState([]);
-
-  // function handleAcceptedFiles(files) {
-  //   files.map((file) =>
-  //     Object.assign(file, {
-  //       preview: URL.createObjectURL(file),
-  //       formattedSize: formatBytes(file.size),
-  //     })
-  //   );
-  //   setselectedFiles(files);
-
-  //   console.clear();
-  //   console.log("files are ===>", files);
-  // }
-
-  /**
-   * Formats the size
-   */
-  // function formatBytes(bytes, decimals = 2) {
-  //   if (bytes === 0) return "0 Bytes";
-  //   const k = 1024;
-  //   const dm = decimals < 0 ? 0 : decimals;
-  //   const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  //   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-  // }
-
+  // upload file
   function handleAcceptedFiles(files) {
     files.map((file) =>
       Object.assign(file, {
@@ -123,53 +86,40 @@ const AddCategories = () => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // useEffect(() => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(finalFormData),
+    };
+    const res = fetch(
+      "http://localhost:3000/api/categories/add",
+      requestOptions
+    );
+
+    return res;
+    // }, []);
+  };
+
   const [webImage, setWebFiles] = useState([]);
-  const [mobImage, setMobImage] = useState("");
-  const [bgImage, setBgImage] = useState("");
+  const [mobImage, setMobImage] = useState([]);
+  const [bgImage, setBgImage] = useState([]);
   const [name, setName] = useState("");
   const [note, setNote] = useState("");
 
   let finalFormData = new FormData();
 
-  console.clear();
-  console.log("web img ==>", webImage);
-
   useEffect(() => {
-    webImage && finalFormData.append("web_img", webImage);
-    mobImage && finalFormData.append("mobile_img", mobImage);
-    bgImage && finalFormData.append("bg_img", bgImage);
-    name && finalFormData.append("name", name);
-    note && finalFormData.append("note", note);
+    finalFormData.append("web_img", webImage);
+    finalFormData.append("mobile_img", mobImage);
+    finalFormData.append("bg_img", bgImage);
+    finalFormData.append("name", name);
+    finalFormData.append("note", note);
   }, [webImage, mobImage, bgImage, name, note]);
 
-  // const handleChange_1 = (e) => {
-  //   let files = e.target.files;
-  //   setWebImage(files[0]);
-  // };
-
-  // const handleChange_2 = (e) => {
-  //   let files = e.target.files;
-  //   setMobImage(files[0]);
-  // };
-
-  // const handleChange_3 = (e) => {
-  //   let files = e.target.files;
-  //   setBgImage(files[0]);
-  // };
-
-  // console.log("form data ==>", finalFormData);
-  // console.log("img 2 ==>", mobImage);
-  // console.log("img 3 ==>", bgImage);
-
-  // api data fetching
-  // const addCategoryAsync = async () => {
-  //   const snapshot = await fetch("http://localhost:3000/api/categories/add", {
-  //     method: "POST",
-  //     body: finalFormData,
-  //   });
-  //   const data = await snapshot.json();
-  //   return data;
-  // };
+  console.log("form data ==>", finalFormData);
 
   return (
     <React.Fragment>
@@ -179,24 +129,28 @@ const AddCategories = () => {
         </MetaTags>
         <Container fluid>
           <BreadCrumb title="Add Category" pageTitle="Category" />
-          <Row>
-            <Col lg={8}>
-              <Card>
-                <CardBody>
-                  <div className="mb-3">
-                    <Label className="form-label" htmlFor="project-title-input">
-                      Name
-                    </Label>
-                    <Input
-                      type="text"
-                      className="form-control"
-                      id="project-title-input"
-                      placeholder="Enter Name"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </div>
+          <form onSubmit={handleSubmit}>
+            <Row>
+              <Col lg={8}>
+                <Card>
+                  <CardBody>
+                    <div className="mb-3">
+                      <Label
+                        className="form-label"
+                        htmlFor="project-title-input"
+                      >
+                        Name
+                      </Label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        id="project-title-input"
+                        placeholder="Enter Name"
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
 
-                  {/* <div className="mb-3">
+                    {/* <div className="mb-3">
                     <label className="form-label">Feature Image for Web</label>
                     <input
                       className="form-control"
@@ -225,120 +179,119 @@ const AddCategories = () => {
                     ></input>
                   </div> */}
 
-                  <div className="mb-3">
-                    <Label className="form-label" htmlFor="project-title-input">
-                      Note
-                    </Label>
+                    <div className="mb-3">
+                      <Label
+                        className="form-label"
+                        htmlFor="project-title-input"
+                      >
+                        Note
+                      </Label>
 
-                    <textarea
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter note here"
-                      onChange={(e) => setNote(e.target.value)}
-                    ></textarea>
-                  </div>
+                      <textarea
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter note here"
+                        onChange={(e) => setNote(e.target.value)}
+                      ></textarea>
+                    </div>
 
-                  <div className="mb-3">
-                    <Label className="form-label" htmlFor="project-title-input">
-                      Status
-                    </Label>
-                    <select
-                      className="form-select mb-3"
-                      aria-label="Default select example"
-                    >
-                      <option value="1">Published</option>
-                      <option value="2">Drafts</option>
-                      <option value="3">Decline</option>
-                    </select>
-                  </div>
-                </CardBody>
-              </Card>
+                    <div className="mb-3">
+                      <Label
+                        className="form-label"
+                        htmlFor="project-title-input"
+                      >
+                        Status
+                      </Label>
+                      <select
+                        className="form-select mb-3"
+                        aria-label="Default select example"
+                      >
+                        <option value="1">Published</option>
+                        <option value="2">Drafts</option>
+                        <option value="3">Decline</option>
+                      </select>
+                    </div>
+                  </CardBody>
+                </Card>
 
-              <div className="text-start mb-4">
-                <button
-                  type="submit"
-                  className="btn btn-success w-sm"
-                  onClick={() => {
-                    console.log("api set started!");
-                    submitData(finalFormData);
-                  }}
-                >
-                  Create
-                </button>
-              </div>
-            </Col>
+                <div className="text-start mb-4">
+                  <button type="submit" className="btn btn-success w-sm">
+                    Create
+                  </button>
+                </div>
+              </Col>
 
-            <Col lg={4}>
-              <div className="card">
-                <CardHeader>
-                  <h4 className="card-title mb-0">Feature Image for Web</h4>
-                </CardHeader>
+              <Col lg={4}>
+                <div className="card">
+                  <CardHeader>
+                    <h4 className="card-title mb-0">Feature Image for Web</h4>
+                  </CardHeader>
 
-                <CardBody>
-                  <div className="dropzone">
-                    <Dropzone
-                      onDrop={(acceptedFiles) => {
-                        handleAcceptedFiles(acceptedFiles);
-                      }}
-                    >
-                      {({ getRootProps, getInputProps }) => (
-                        <div className="dropzone dz-clickable">
-                          <div
-                            className="dz-message needsclick"
-                            {...getRootProps()}
-                          >
-                            <div className="mb-3">
-                              <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                  <CardBody>
+                    <div className="dropzone">
+                      <Dropzone
+                        onDrop={(acceptedFiles) => {
+                          handleAcceptedFiles(acceptedFiles);
+                        }}
+                      >
+                        {({ getRootProps, getInputProps }) => (
+                          <div className="dropzone dz-clickable">
+                            <div
+                              className="dz-message needsclick"
+                              {...getRootProps()}
+                            >
+                              <div className="mb-3">
+                                <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                              </div>
+                              <h4>Drop files here or click to upload.</h4>
                             </div>
-                            <h4>Drop files here or click to upload.</h4>
                           </div>
-                        </div>
-                      )}
-                    </Dropzone>
-                  </div>
+                        )}
+                      </Dropzone>
+                    </div>
 
-                  <div className="list-unstyled mb-0" id="file-previews">
-                    {webImage.map((f, i) => {
-                      return (
-                        <Card
-                          className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
-                          key={i + "-file"}
-                        >
-                          <div className="p-2">
-                            <Row className="align-items-center">
-                              <Col className="col-auto">
-                                <img
-                                  data-dz-thumbnail=""
-                                  height="80"
-                                  className="avatar-sm rounded bg-light"
-                                  alt={f.name}
-                                  src={f.preview}
-                                />
-                              </Col>
-                              <Col>
-                                <Link
-                                  to="#"
-                                  className="text-muted font-weight-bold"
-                                >
-                                  {f.name}
-                                </Link>
-                                <p className="mb-0">
-                                  <strong>{f.formattedSize}</strong>
-                                </p>
-                              </Col>
-                            </Row>
-                          </div>
-                        </Card>
-                      );
-                    })}
-                  </div>
+                    <div className="list-unstyled mb-0" id="file-previews">
+                      {webImage.map((f, i) => {
+                        return (
+                          <Card
+                            className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                            key={i + "-file"}
+                          >
+                            <div className="p-2">
+                              <Row className="align-items-center">
+                                <Col className="col-auto">
+                                  <img
+                                    data-dz-thumbnail=""
+                                    height="80"
+                                    className="avatar-sm rounded bg-light"
+                                    alt={f.name}
+                                    src={f.preview}
+                                  />
+                                </Col>
+                                <Col>
+                                  <Link
+                                    to="#"
+                                    className="text-muted font-weight-bold"
+                                  >
+                                    {f.name}
+                                  </Link>
+                                  <p className="mb-0">
+                                    <strong>{f.formattedSize}</strong>
+                                  </p>
+                                </Col>
+                              </Row>
+                            </div>
+                          </Card>
+                        );
+                      })}
+                    </div>
 
-                  {/* <input
+                    {/* <input
                     type="file"
                     value={webImage}
                     onChange={(e) => setWebImage(e.target.value)}
                   /> */}
-                  {/* <FilePond
+                    {/* <FilePond
                     files={webImage}
                     onupdatefiles={setWebImage}
                     allowMultiple={true}
@@ -346,44 +299,46 @@ const AddCategories = () => {
                     name="files"
                     className="filepond filepond-input-multiple"
                   /> */}
-                </CardBody>
-              </div>
-              <div className="card">
-                <CardHeader>
-                  <h4 className="card-title mb-0">Feature Image for Mobile</h4>
-                </CardHeader>
+                  </CardBody>
+                </div>
+                <div className="card">
+                  <CardHeader>
+                    <h4 className="card-title mb-0">
+                      Feature Image for Mobile
+                    </h4>
+                  </CardHeader>
 
-                <CardBody>
-                  <FilePond
-                    files={mobImage}
-                    onupdatefiles={setMobImage}
-                    allowMultiple={false}
-                    maxFiles={1}
-                    name="mobImage"
-                    className="multiple_filepond_custom filepond-input-multiple"
-                  />
-                </CardBody>
-              </div>
-              <div className="card">
-                <CardHeader>
-                  <h4 className="card-title mb-0">
-                    Background Image for Mobile
-                  </h4>
-                </CardHeader>
+                  <CardBody>
+                    <FilePond
+                      files={mobImage}
+                      onupdatefiles={setMobImage}
+                      allowMultiple={false}
+                      maxFiles={1}
+                      name="mobImage"
+                      className="multiple_filepond_custom filepond-input-multiple"
+                    />
+                  </CardBody>
+                </div>
+                <div className="card">
+                  <CardHeader>
+                    <h4 className="card-title mb-0">
+                      Background Image for Mobile
+                    </h4>
+                  </CardHeader>
 
-                <CardBody>
-                  <FilePond
-                    files={bgImage}
-                    onupdatefiles={setBgImage}
-                    allowMultiple={false}
-                    maxFiles={1}
-                    name="bgImage"
-                    className="multiple_filepond_custom filepond-input-multiple"
-                  />
-                </CardBody>
-              </div>
+                  <CardBody>
+                    <FilePond
+                      files={bgImage}
+                      onupdatefiles={setBgImage}
+                      allowMultiple={false}
+                      maxFiles={1}
+                      name="bgImage"
+                      className="multiple_filepond_custom filepond-input-multiple"
+                    />
+                  </CardBody>
+                </div>
 
-              {/* <div className="card">
+                {/* <div className="card">
                 <CardBody>
                   <div className="card-header">
                     <h5 className="card-title mb-0">Image</h5>
@@ -393,8 +348,9 @@ const AddCategories = () => {
                   </div>
                 </CardBody>
               </div> */}
-            </Col>
-          </Row>
+              </Col>
+            </Row>
+          </form>
         </Container>
       </div>
     </React.Fragment>
